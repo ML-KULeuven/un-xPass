@@ -1,0 +1,12 @@
+# @package _global_
+
+# This experiment evaluates a naive baseline model that
+# predicts the nearest teammate as the most likely receiver
+
+defaults:
+  - override /component: null
+
+experiment_name: "pass_selection/naive_baseline"
+
+component:
+  _target_: unxpass.components.pass_selection.ClosestPlayerBaseline

@@ -1,0 +1,11 @@
+# @package _global_
+
+# Expected Threat
+#
+defaults:
+  - override /component: null
+
+experiment_name: "pass_value/expected_threat"
+
+component:
+  _target_: unxpass.components.pass_value.ExpectedThreatModel

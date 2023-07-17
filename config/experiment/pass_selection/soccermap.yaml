@@ -1,0 +1,24 @@
+# @package _global_
+
+# The soccermap model
+
+defaults:
+  - override /component: null
+  - override /model_cfg: pytorch
+  - override /train_cfg: pytorch_gpu
+
+experiment_name: "pass_selection/soccermap"
+
+model_cfg:
+  _target_: unxpass.components.pass_selection.PytorchSoccerMapModel
+  lr: 1e-4
+
+train_cfg:
+  batch_size: 32
+  callbacks:
+    early_stopping:
+      min_delta: 1e-5
+
+component:
+  _target_: unxpass.components.pass_selection.SoccerMapComponent
+  model: ${model_cfg}

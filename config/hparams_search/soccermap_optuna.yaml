@@ -1,0 +1,18 @@
+# @package _global_
+
+# example hyperparameter optimization of some experiment with Optuna:
+# python run.py -m hparams_search=mnist_optuna experiment=example_simple
+# python run.py -m hparams_search=mnist_optuna experiment=example_simple hydra.sweeper.n_trials=30
+# python run.py -m hparams_search=mnist_optuna experiment=example_simple logger=wandb
+
+hydra:
+  mode: "MULTIRUN" # set hydra to multirun by default if this config is attached
+
+  # here we define Optuna hyperparameter search
+  # it optimizes for value returned from function with @hydra.main decorator
+  # learn more here: https://hydra.cc/docs/next/plugins/optuna_sweeper
+  sweeper:
+    # define range of hyperparameters
+    params:
+      model_cfg.lr: 1e-3, 1e-4, 1e-5, 1e-6
+      train_cfg.batch_size: 16, 32

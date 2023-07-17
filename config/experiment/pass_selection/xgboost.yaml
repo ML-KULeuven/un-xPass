@@ -1,0 +1,30 @@
+# @package _global_
+
+# This experiment evaluates an XGBoost model.
+
+defaults:
+  - override /component: null
+  - override /model_cfg: xgbclassifier
+  - override /train_cfg: xgboost
+
+experiment_name: "pass_selection/xgboost"
+
+model_cfg:
+  _target_: xgboost.XGBRanker
+  eval_metric: "auc"
+
+component:
+  _target_: unxpass.components.pass_selection.XGBoostComponent
+  model: ${model_cfg}
+  features:
+    pass_options:
+      - origin_x
+      - origin_y
+      - destination_x
+      - destination_y
+      - distance
+      - angle
+      - origin_angle_to_goal
+      - destination_angle_to_goal
+      - destination_distance_defender
+      - pass_distance_defender

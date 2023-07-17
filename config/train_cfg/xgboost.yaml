@@ -1,0 +1,9 @@
+callbacks:
+  early_stopping:
+    _target_: xgboost.callback.EarlyStopping
+    rounds: 100 # Early stopping rounds.
+    min_delta: 1e-3 # minimum change in the monitored metric needed to qualify as an improvement
+    maximize: True # Whether to maximize evaluation metric.
+    save_best: True # Whether training should return the best model or the last model.
+    data_name: "validation_0" # Name of dataset that is used for early stopping.
+    metric_name: ${model_cfg.eval_metric} # Name of metric that is used for early stopping.

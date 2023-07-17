@@ -1,0 +1,38 @@
+# @package _global_
+
+# specify here default configuration
+defaults:
+  - _self_
+
+  # Default configuration for each component
+  - component: null
+
+  # Configured in each component
+  - model_cfg: null
+  - train_cfg: null
+
+  # Experiment configuration
+  - experiment: null
+  - hparams_search: null
+
+  - hydra: default.yaml
+
+# use `python run.py debug=true` for easy debugging!
+debug: False
+
+# pretty print config at the start of the run using Rich library
+print_config: True
+
+# disable python warnings if they annoy you
+ignore_warnings: True
+
+# check performance on test set, using the best model achieved during training
+test_after_training: True
+
+# tags to help you identify your experiments
+# you can overwrite this in experiment configs
+# overwrite from command line with `python train.py tags="[first_tag, second_tag]"`
+tags: {}
+
+# seed for random number generators in pytorch, numpy and python.random
+seed: 1234

@@ -1,0 +1,24 @@
+_target_: xgboost.XGBClassifier
+
+# General parameters
+booster: "gbtree"
+verbosity: 1
+validate_parameters: True
+nthread: -1
+# Parameters for tree booster
+n_estimators: 10000
+learning_rate: 0.3
+gamma: 0
+max_depth: 6
+min_child_weight: 20 # relatively high to avoid overfitting
+max_delta_step: 0
+subsample: 1
+colsample_bylevel: 1
+colsample_bynode: 1
+colsample_bytree: 1
+reg_lambda: 1
+reg_alpha: 0
+tree_method: "auto"
+scale_pos_weight: 1
+grow_policy: "depthwise"
+max_leaves: 0

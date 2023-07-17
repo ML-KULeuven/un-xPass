@@ -1,0 +1,59 @@
+# @package _global_
+
+# Expected Threat
+
+defaults:
+  - override /component: null
+  - override /model_cfg: xgbclassifier
+  - override /train_cfg: xgboost
+
+experiment_name: "pass_value/vaep"
+
+model_cfg:
+  objective: "binary:logistic"
+  eval_metric: "auc"
+
+component:
+  _target_: unxpass.components.pass_value.VaepModel
+
+  offensive_model:
+    _target_: unxpass.components.pass_value.OffensiveVaepModel
+    model: ${model_cfg}
+    features:
+      - actiontype_onehot
+      - result_onehot
+      - actiontype_result_onehot
+      - bodypart_onehot
+      - time
+      - startlocation
+      - endlocation
+      - startpolar
+      - endpolar
+      - movement
+      - team
+      - time_delta
+      - space_delta
+      - goalscore
+    label:
+      - scores
+
+  defensive_model:
+    _target_: unxpass.components.pass_value.DefensiveVaepModel
+    model: ${model_cfg}
+    features:
+      - actiontype_onehot
+      - result_onehot
+      - actiontype_result_onehot
+      - bodypart_onehot
+      - time
+      - startlocation
+      - endlocation
+      - startpolar
+      - endpolar
+      - movement
+      - team
+      - time_delta
+      - space_delta
+      - goalscore
+    label:
+      - concedes

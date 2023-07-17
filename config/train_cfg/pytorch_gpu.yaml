@@ -1,0 +1,9 @@
+defaults:
+  - pytorch
+
+num_workers: 16
+pin_memory: true
+
+trainer:
+  accelerator: gpu
+  devices: 1

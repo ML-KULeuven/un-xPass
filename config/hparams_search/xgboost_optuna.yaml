@@ -1,0 +1,56 @@
+# @package _global_
+
+# example hyperparameter optimization of some experiment with Optuna:
+# python run.py -m hparams_search=mnist_optuna experiment=example_simple
+# python run.py -m hparams_search=mnist_optuna experiment=example_simple hydra.sweeper.n_trials=30
+# python run.py -m hparams_search=mnist_optuna experiment=example_simple logger=wandb
+
+defaults:
+  - override /hydra/sweeper: optuna
+
+# choose metric which will be optimized by Optuna
+optimized_metric: ${model_cfg.eval_metric}
+
+hydra:
+  mode: "MULTIRUN" # set hydra to multirun by default if this config is attached
+
+  # here we define Optuna hyperparameter search
+  # it optimizes for value returned from function with @hydra.main decorator
+  # learn more here: https://hydra.cc/docs/next/plugins/optuna_sweeper
+  sweeper:
+    _target_: hydra_plugins.hydra_optuna_sweeper.optuna_sweeper.OptunaSweeper
+    storage: null
+    study_name: null
+    n_jobs: 20
+
+    # 'minimize' or 'maximize' the objective
+    direction: maximize
+    # direction: minimize
+
+    # number of experiments that will be executed
+    n_trials: 100
+
+    # choose Optuna hyperparameter sampler
+    # learn more here: https://optuna.readthedocs.io/en/stable/reference/samplers.html
+    sampler:
+      _target_: optuna.samplers.TPESampler
+      seed: 12345
+      consider_prior: true
+      prior_weight: 1.0
+      consider_magic_clip: true
+      consider_endpoints: false
+      n_startup_trials: 10
+      n_ei_candidates: 24
+      multivariate: false
+      warn_independent_sampling: true
+
+    # define range of hyperparameters
+    params:
+      model_cfg.learning_rate: tag(log, interval(1e-2, .25))
+      model_cfg.max_depth: range(1, 9)
+      # model_cfg.min_child_weight: range(1, 11)
+      model_cfg.gamma: tag(log, interval(1e-8, 1))
+      model_cfg.reg_lambda: tag(log, interval(1e-8, 100))
+      model_cfg.reg_alpha: tag(log, interval(1e-8, 100))
+      model_cfg.subsample: tag(log, interval(0.1, 1))
+      model_cfg.colsample_bytree: tag(log, interval(0.1, 1))

@@ -1,0 +1,75 @@
+# @package _global_
+
+# VAEP trained on xg labels
+
+defaults:
+  - override /component: null
+  - override /model_cfg: xgbregressor
+  - override /train_cfg: xgboost
+
+experiment_name: "pass_value/vaep_xg"
+
+model_cfg:
+  objective: "reg:logistic"
+  eval_metric: "rmse"
+
+  learning_rate: 0.09824518286128303
+  max_depth: 6
+  gamma: 1.719417635880229e-06
+  reg_lambda: 0.085802210677737
+  reg_alpha: 1.042204226716464e-08
+  subsample: 0.7856643781233339
+  colsample_bytree: 0.29338345593959264
+
+train_cfg:
+  callbacks:
+    early_stopping:
+      maximize: False # Whether to maximize evaluation metric.
+      metric_name: "rmse" # Name of metric that is used for early stopping.
+
+component:
+  _target_: unxpass.components.pass_value.VaepModel
+
+  offensive_model:
+    _target_: unxpass.components.pass_value.OffensiveVaepModel
+    model: ${model_cfg}
+    features:
+      - actiontype_onehot
+      - result_onehot
+      - actiontype_result_onehot
+      - bodypart_onehot
+      - time
+      - startlocation
+      - endlocation
+      - startpolar
+      - endpolar
+      - movement
+      - team
+      - time_delta
+      - space_delta
+      - goalscore
+    label:
+      - scores
+      - scores_xg
+
+  defensive_model:
+    _target_: unxpass.components.pass_value.DefensiveVaepModel
+    model: ${model_cfg}
+    features:
+      - actiontype_onehot
+      - result_onehot
+      - actiontype_result_onehot
+      - bodypart_onehot
+      - time
+      - startlocation
+      - endlocation
+      - startpolar
+      - endpolar
+      - movement
+      - team
+      - time_delta
+      - space_delta
+      - goalscore
+    label:
+      - concedes
+      - concedes_xg

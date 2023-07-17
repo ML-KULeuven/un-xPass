@@ -1,0 +1,63 @@
+# @package _global_
+
+# This experiment evaluates an XGBoost model that uses the full set of
+# features.
+
+defaults:
+  - override /component: null
+  - override /model_cfg: xgbclassifier
+  - override /train_cfg: xgboost
+
+experiment_name: "pass_success/threesixty"
+
+model_cfg:
+  objective: "binary:logistic"
+  eval_metric: "auc"
+
+component:
+  _target_: unxpass.components.pass_success.XGBoostComponent
+  model: ${model_cfg}
+  features:
+    # startlocation:
+    #   - start_x_a0
+    #   - start_y_a0
+    startpolar:
+      - start_dist_to_goal_a0
+      - start_angle_to_goal_a0
+    relative_startlocation:
+      - start_dist_goalline_a0
+      - start_dist_sideline_a0
+    # endlocation:
+    #   - end_x_a0
+    #   - end_y_a0
+    endpolar:
+      - end_dist_to_goal_a0
+      - end_angle_to_goal_a0
+    relative_endlocation:
+      - end_dist_goalline_a0
+      - end_dist_sideline_a0
+    movement:
+      - movement_a0
+      - dx_a0
+      - dy_a0
+    angle:
+      - angle_a0
+    ball_height_onehot:
+      - ball_height_ground_a0
+      - ball_height_low_a0
+      - ball_height_high_a0
+    player_possession_time:
+      - player_possession_time_a0
+    # team_possession_time:
+    #   - team_possession_time_a0
+    speed:
+      - speed_a01
+      - speed_a02
+    under_pressure:
+      - under_pressure_a0
+    dist_defender:
+      - dist_defender_start_a0
+      - dist_defender_end_a0
+      - dist_defender_action_a0
+    nb_opp_in_path:
+      - nb_opp_in_path_a0

@@ -1,0 +1,12 @@
+# @package _global_
+
+# This experiment evaluates a naive baseline model that
+# assigns the average pass completion to all passes.
+
+defaults:
+  - override /component: null
+
+experiment_name: "pass_success/naive_baseline"
+
+component:
+  _target_: unxpass.components.pass_success.NaiveBaselineComponent

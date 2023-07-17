@@ -1,0 +1,53 @@
+# @package _global_
+
+# This experiment evaluates an XGBoost model that uses only uses features that
+# can be derived from the start and **intended** end location of the pass.
+
+defaults:
+  - override /component: null
+  - override /model_cfg: xgbclassifier
+  - override /train_cfg: xgboost
+
+experiment_name: "pass_success/intended_endlocation"
+
+model_cfg:
+  objective: "binary:logistic"
+  eval_metric: "aucpr"
+  # use same parameters as in observed_endlocation experiment
+  # learning_rate: 0.08205814286748274
+  # max_depth: 5
+  # min_child_weight: 1
+  # gamma: 3.9020723643533356e-05
+  # reg_lambda: 0.01211885041084191
+  # reg_alpha: 1.1687258852756346e-05
+  # subsample: 0.8693964669432652
+  # colsample_bytree: 0.45168991093771954
+
+component:
+  _target_: unxpass.components.pass_success.XGBoostComponent
+  model: ${model_cfg}
+  features:
+    # startlocation:
+    #   - start_x_a0
+    #   - start_y_a0
+    startpolar:
+      - start_dist_to_goal_a0
+      - start_angle_to_goal_a0
+    relative_startlocation:
+      - start_dist_goalline_a0
+      - start_dist_sideline_a0
+    # endlocation:
+    # - end_x_a0
+    # - end_y_a0
+    intended_endpolar:
+      - end_dist_to_goal_a0
+      - end_angle_to_goal_a0
+    intended_relative_endlocation:
+      - end_dist_goalline_a0
+      - end_dist_sideline_a0
+    intended_movement:
+      - movement_a0
+      - dx_a0
+      - dy_a0
+    intended_angle:
+      - angle_a0
