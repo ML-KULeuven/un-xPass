@@ -65,7 +65,7 @@ Apart from the SQLite interface, the unxpass library also supports storing data 
 <details>
 <summary><b>STEP 2: Create train and test data.</b></summary>
 
-Now we will extract all passes from the data, create a feature representation and assign a label to each pass. The code below shows how to create a train and test set in `./stores/datasets/euro2020` with all features and labels required to train and evaluate the models. The [`./config/dataset/train.yaml`](./config/dataset/train.yaml) file defines which leagues, seasons and games should be used to create the training dataset. Similarly, the [`./config/dataset/test.yaml`](./config/dataset/test.yaml) file defines which leagues, seasons and games should be used to create the evaluation set.
+Now we will extract all passes from the data, create a feature representation and assign a label to each pass. The code below shows how to create a train and test set in `./stores/datasets/euro2020` with all features and labels required to train and evaluate the models. The [`./config/dataset/euro2020/train.yaml`](./config/dataset/euro2020/train.yaml) file defines which leagues, seasons and games should be used to create the training dataset. Similarly, the [`./config/dataset/euro2020/test.yaml`](./config/dataset/euro2020/test.yaml) file defines which leagues, seasons and games should be used to create the evaluation set.
 
 ```bash
 unxpass create-dataset \
