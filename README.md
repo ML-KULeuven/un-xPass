@@ -83,7 +83,7 @@ unxpass create-dataset \
 
 _(this will take ~2 hours to run)_
 
-It is also possible to generate a specific set of features and labels. For example, to generate only the "relative start location" features and "success" label, you can add `--xfn="relative_startlocation --yfn="success"` to the above command.
+It is also possible to generate a specific set of features and labels. For example, to generate only the "relative start location" features and "success" label, you can add `--xfn="relative_startlocation" --yfn="success"` to the above command.
 
 </details>
 
