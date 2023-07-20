@@ -132,13 +132,13 @@ unxpass rate \
 ## Contributing
 
 All contributions, bug reports, bug fixes, documentation improvements, enhancements, and ideas are welcome. However, be aware that the code is not actively developed. It's primary use is to enable reproducibility of our research. If you believe there is a feature missing, feel free to raise a feature request, but please do be aware that the overwhelming likelihood is that your feature request will not be accepted.
-To learn more on how to contribute, see the [Contributor Guide](https://github.com/ML-KULeuven/un-xPass/CONTRIBUTING.rst).
+To learn more on how to contribute, see the [Contributor Guide](https://github.com/ML-KULeuven/un-xPass/blob/main/CONTRIBUTING.rst).
 
 ## Research
 
 If you make use of this package in your research, please consider citing the following paper:
 
-- Pieter Robberechts, Maaike Van Roy and Jesse Davis. **un-xPass: Measuring Soccer Player’s Creativity.** Proceedings of the 29th ACM SIGKDD Conference on Knowledge Discovery and Data Mining. 2023. <br/>[ [pdf](http://doi.acm.org/10.1145/3580305.3599924) | [bibtex](https://github.com/ML-KULeuven/un-xPass/unxpass.bibtex) ]
+- Pieter Robberechts, Maaike Van Roy and Jesse Davis. **un-xPass: Measuring Soccer Player’s Creativity.** Proceedings of the 29th ACM SIGKDD Conference on Knowledge Discovery and Data Mining. 2023. <br/>[ [pdf](http://doi.acm.org/10.1145/3580305.3599924) | [bibtex](https://github.com/ML-KULeuven/un-xPass/blob/main/docs/unxpass.bibtex) ]
 
 ## License
 
