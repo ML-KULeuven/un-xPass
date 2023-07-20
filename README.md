@@ -48,7 +48,7 @@ This section gives a quick introduction on how to get started using the CLI. For
 <details>
 <summary><b>STEP 1: Obtain StatsBomb 360 data.</b></summary>
 
-The models are build on [StatsBomb 360 event stream data](https://statsbomb.com/what-we-do/soccer-data/360-2/). StatsBomb has made data of certain leagues freely available for public non-commercial use at <https://github.com/statsbomb/open-data>. This open data can be accessed without the need of authentication, but its use is subject to a [user agreement](https://github.com/statsbomb/open-data/blob/master/LICENSE.pdf). The code below shows how to fetch the public data of EURO 2020 from the repository and store it in a SQLite database.
+The models are built on [StatsBomb 360 event stream data](https://statsbomb.com/what-we-do/soccer-data/360-2/). StatsBomb has made data of certain leagues freely available for public non-commercial use at <https://github.com/statsbomb/open-data>. This open data can be accessed without the need of authentication, but its use is subject to a [user agreement](https://github.com/statsbomb/open-data/blob/master/LICENSE.pdf). The code below shows how to fetch the public data of EURO 2020 from the repository and store it in an SQLite database.
 
 ```bash
 unxpass load-data \
@@ -116,7 +116,7 @@ python run_experiment.py \
 <details>
 <summary><b>STEP 4: Compute creativity ratings.</b></summary>
 
-Once you have trained all required models, they can be used to compute creativity ratings. Therefore, specify a dataset to compute ratings for and the run ID of a Soccermap-based pass selection model, a XGBoost-based pass selection model and a VAEP model. The run IDs are printed after training a component or can be found in the MLFlow UI.
+Once you have trained all required models, they can be used to compute creativity ratings. Therefore, specify a dataset to compute ratings for and the run ID of a Soccermap-based pass selection model, an XGBoost-based pass selection model and a VAEP model. The run IDs are printed after training a component or can be found in the MLFlow UI.
 
 ```bash
 unxpass rate \
@@ -131,14 +131,14 @@ unxpass rate \
 
 ## Contributing
 
-All contributions, bug reports, bug fixes, documentation improvements, enhancements, and ideas are welcome. However, be aware that the code is not actively developed. It's primary use is to enable reproducibility of our research. If you believe there is a feature missing, feel free to raise a feature request, but please do be aware that the overwhelming likelihood is that your feature request will not be accepted.
+All contributions, bug reports, bug fixes, documentation improvements, enhancements, and ideas are welcome. However, be aware that the code is not actively developed. Its primary use is to enable reproducibility of our research. If you believe there is a feature missing, feel free to raise a feature request, but please do be aware that the overwhelming likelihood is that your feature request will not be accepted.
 To learn more on how to contribute, see the [Contributor Guide](https://github.com/ML-KULeuven/un-xPass/CONTRIBUTING.rst).
 
 ## Research
 
 If you make use of this package in your research, please consider citing the following paper:
 
-- Pieter Robberechts, Maaike Van Roy and Jesse Davis. **un-xPass: Measuring Soccer Player’s Creativity.** Proceedings of the 29th ACM SIGKDD Conference on Knowledge Discovery and Data Mining. 2023. <br/>[ [pdf](http://doi.acm.org/10.1145/3580305.3599924) | [bibtex](https://github.com/ML-KULeuven/un-xPass/unxpass.bibtex) ]
+- Pieter Robberechts, Maaike Van Roy and Jesse Davis. **un-xPass: Measuring Soccer Player’s Creativity.** Proceedings of the 29th ACM SIGKDD Conference on Knowledge Discovery and Data Mining. 2023. <br/>[ [pdf](https://people.cs.kuleuven.be/~pieter.robberechts/repo/robberechts-kdd23-unxpass.pdf) | [bibtex](https://github.com/ML-KULeuven/un-xPass/docs/unxpass.bibtex) ]
 
 ## License
 
