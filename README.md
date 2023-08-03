@@ -30,7 +30,7 @@ $ git clone git://github.com/ML-KULeuven/un-xPass.git
 $ cd un-xPass
 # Create a virtual environment
 $ python3 -m venv .venv
-$ source venv/bin/activate
+$ source .venv/bin/activate
 # Install the package and its dependencies
 $ poetry install
 ```
