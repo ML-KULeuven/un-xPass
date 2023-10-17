@@ -104,7 +104,9 @@ def _sb_events_to_spadl(events: pd.DataFrame, home_team_id: int) -> pd.DataFrame
     )
     actions["under_pressure"] = actions["under_pressure"].fillna(False)
     # convert coordinates in freeze frames to SPADL coordinates
-    actions["visible_area_360"] = actions["visible_area_360"].apply(_sb_visible_area_to_spadl)
+    actions["visible_area_360"] = actions.assign(away_idx=(actions.team_id != home_team_id)).apply(
+        lambda x: _sb_visible_area_to_spadl(x.visible_area_360, x.away_idx), axis=1
+    )
     actions["in_visible_area_360"] = actions.apply(
         lambda x: (
             _inside_polygon(x.start_x, x.start_y, x.visible_area_360)
@@ -129,6 +131,7 @@ def _sb_coordinates_to_spadl(
 
 def _sb_visible_area_to_spadl(
     visible_area: Optional[List[float]],
+    invert: bool = False,
 ) -> Optional[List[Tuple[float, float]]]:
     if not isinstance(visible_area, list):
         return None
@@ -136,6 +139,9 @@ def _sb_visible_area_to_spadl(
     visible_area_x, visible_area_y = _sb_coordinates_to_spadl(
         np_visible_area[::2], np_visible_area[1::2]
     )
+    if invert:
+        visible_area_x = field_length - visible_area_x
+        visible_area_y = field_width - visible_area_y
     return list(zip(visible_area_x, visible_area_y))
 
 
