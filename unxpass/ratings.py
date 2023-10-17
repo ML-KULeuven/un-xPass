@@ -116,7 +116,8 @@ class CreativeDecisionRating:
         df_ratings["CDR"] = (
             df_ratings["true_p_success"] * df_ratings["true_value_success"]
             + (1 - df_ratings["true_p_success"]) * df_ratings["true_value_fail"]
-            - df_ratings["typical_p_success"] * df_ratings["typical_value_success"]
+        ) - (
+            df_ratings["typical_p_success"] * df_ratings["typical_value_success"]
             + (1 - df_ratings["typical_p_success"]) * df_ratings["typical_value_fail"]
         )
 
